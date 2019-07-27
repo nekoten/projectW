@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<item-->
+        <!--android:id="@+id/action_cart"-->
+        <!--android:orderInCategory="300"-->
+        <!--android:title="User"-->
+        <!--android:icon="@drawable/ic_cartcar"-->
+        <!--app:showAsAction="always"></item>-->
+
+    <item
+        android:id="@+id/action_cart"
+        android:enabled="true"
+        android:title="ตะกร้าสินค้า"/>
+    <item
+        android:id="@+id/item_favorite"
+        android:enabled="true"
+        android:title="สินค้าที่สั่งซื้อ"/>
+    <item
+        android:id="@+id/Slip"
+        android:enabled="true"
+        android:title="ชำระเงินมัดจำ"/>
+
+
+
+</menu>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Warehouse Application</string>
+    <string-array name="usertype">
+        <item>สมาชิก</item>
+        <item>ผู้จัดการ</item>
+    </string-array>
+</resources>
