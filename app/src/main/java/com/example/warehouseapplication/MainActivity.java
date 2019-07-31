@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.warehouseapplication.Model.User;
 import com.example.warehouseapplication.utils.MessageHandler;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText edtUser, edtPassword;
     private String strUserChoose, strPasswordchoose, strPasswordTrue, strName;
     private FoodTABLE objFoodTABLE;
-
+    String TAG ="Login";
     TextView signup;
 
     EditText username, userpassword;
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "Click!!!: ");
                userLogin();
            }
         });
@@ -121,14 +124,17 @@ public class MainActivity extends AppCompatActivity {
     }   //onCreate
 
     private void userLogin() {
-
+        Log.d(TAG, "shot: "+mainUrl + "android/login.php");
         StringRequest request = new StringRequest(StringRequest.Method.POST, mainUrl + "android/login.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()) {
                     User.CheckloginBean user = MessageHandler.deSerializeMessage(response,User.CheckloginBean.class);
+
+                    Log.d(TAG, "onResponse: "+ response);
                     Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
                     intent.putExtra("username", user.getUsername());
+                    intent.putExtra("firstname", user.getFirstname());
                     intent.putExtra("idUser", user.getId_member());
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "เข้าสู่ระบบเสำเร็จ", Toast.LENGTH_LONG).show();
@@ -140,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d(TAG, "onErrorResponse: "+error);
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-
+                Log.d(TAG, "getParams: ");
                 Map<String, String> params = new HashMap<>();
                 params.put("loginuser", "true");
                 params.put("username", username.getText().toString().trim());

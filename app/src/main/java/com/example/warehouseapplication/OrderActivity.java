@@ -29,8 +29,7 @@ public class OrderActivity  extends AppCompatActivity{
     }
     public String strMyOfficer;
     public String  strMyFood, strItem;
-    public String user;
-    public String idUser;
+    public String user,idUser,firstname;
 
     TextView test;
 
@@ -66,6 +65,8 @@ public class OrderActivity  extends AppCompatActivity{
         Intent intent = getIntent();
         user = intent.getStringExtra("username");
         idUser = intent.getStringExtra("idUser");
+        firstname = intent.getStringExtra("firstname");
+
 
         toolbar = findViewById(R.id.toolbar);
         super.onCreate(savedInstanceState);
@@ -78,7 +79,7 @@ public class OrderActivity  extends AppCompatActivity{
 
         setSupportActionBar(toolbar);
         welcomeuser = findViewById(R.id.welcomeUser);
-        welcomeuser.setText("สวัสดี " + user);
+        welcomeuser.setText("สวัสดี " + firstname);
 
         //Bind Widget
         bindWidget();
