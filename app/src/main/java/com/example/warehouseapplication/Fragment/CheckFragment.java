@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class CheckFragment extends Fragment{
     protected static FragmentActivity mActivity;
     String  idUser;
     static int mPosition;
-
+    String TAG = "CheckFrag";
     TextView tv_name,tv_price;
 
     public List<Check> getProductList() {
@@ -63,6 +64,7 @@ public class CheckFragment extends Fragment{
         super.onCreate(savedInstanceState);
         productList = new ArrayList<>();
         orderDetails = new ArrayList<>();
+        Log.d(TAG, "onCreate: ");
 
 
 
@@ -113,7 +115,6 @@ public class CheckFragment extends Fragment{
                     @Override
                     public void onResponse(String response) {
                         try {
-
                             JSONObject obj = new JSONObject(response);
                             JSONArray array = obj.getJSONArray("Invoice");
                             for (int i = 0; i < array.length(); i++) {

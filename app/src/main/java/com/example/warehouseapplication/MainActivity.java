@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.warehouseapplication.Model.User;
+import com.example.warehouseapplication.Tool.Utils;
 import com.example.warehouseapplication.utils.MessageHandler;
 import com.google.gson.JsonParser;
 
@@ -129,9 +130,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()) {
-                    User.CheckloginBean user = MessageHandler.deSerializeMessage(response,User.CheckloginBean.class);
-
+                    User user = MessageHandler.deSerializeMessage(response,User.class);
+                    Utils.user = user;
                     Log.d(TAG, "onResponse: "+ response);
+
+                    Log.d(TAG, "onResponse_type: " + Utils.user.getUsername());
+                    Log.d(TAG, "onResponse_model: "+ user);
+
                     Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
                     intent.putExtra("username", user.getUsername());
                     intent.putExtra("firstname", user.getFirstname());
@@ -154,8 +159,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "getParams: ");
                 Map<String, String> params = new HashMap<>();
                 params.put("loginuser", "true");
-                params.put("username", username.getText().toString().trim());
-                params.put("userpassword", userpassword.getText().toString().trim());
+//                params.put("username", username.getText().toString().trim());
+//                params.put("userpassword", userpassword.getText().toString().trim());
+                params.put("username", "poon");
+                params.put("userpassword", "094082");
                 return params;
             }
         };

@@ -63,6 +63,7 @@ public class Utils {
     public static QrScan itemScan;
 
     public static User user;
+    public static String order_id;
 
     public static String mylattitude,mylongitude;
 

@@ -86,15 +86,15 @@ public class OrderActivity  extends AppCompatActivity{
         //setup Text Show Officer
         setUpTxtShowOfficer();
 
-        test = findViewById(R.id.test);
-
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(OrderActivity.this, SlipActivity.class);
-                startActivity(intent);
-            }
-        });
+//        test = findViewById(R.id.test);
+//
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(OrderActivity.this, SlipActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
 

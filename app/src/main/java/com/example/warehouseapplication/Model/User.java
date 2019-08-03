@@ -6,144 +6,87 @@ package com.example.warehouseapplication.Model;
 
 public class User {
 
-
     /**
-     * checklogin : {"status":"success","code":"200","description":"Login is successfuly ","id_member":"2","firstname":"Poon","lastname":"Pim","cash":"0","tel":"0820665945","email":"a@m.com","latitude":"97845632","longitude":"0"}
+     * id_member : 18
+     * username : poon
+     * name : null
+     * lastname : พิมพ์รัตน์
+     * telephone : null
+     * address : 2166
+     * firstname : วิชญ์พล
+     * tel : 0820665945
      */
 
-    private CheckloginBean checklogin;
+    private String id_member;
+    private String username;
+    private String name;
+    private String lastname;
+    private String telephone;
+    private String address;
+    private String firstname;
+    private String tel;
 
-    public CheckloginBean getChecklogin() {
-        return checklogin;
+    public String getId_member() {
+        return id_member;
     }
 
-    public void setChecklogin(CheckloginBean checklogin) {
-        this.checklogin = checklogin;
+    public void setId_member(String id_member) {
+        this.id_member = id_member;
     }
 
-    public static class CheckloginBean {
-        /**
-         * status : success
-         * code : 200
-         * description : Login is successfuly
-         * id_member : 2
-         * firstname : Poon
-         * lastname : Pim
-         * cash : 0
-         * tel : 0820665945
-         * email : a@m.com
-         * latitude : 97845632
-         * longitude : 0
-         */
+    public String getUsername() {
+        return username;
+    }
 
-        private String status;
-        private String code;
-        private String description;
-        private String id_member;
-        private String username;
-        private String firstname;
-        private String lastname;
-        private String cash;
-        private String tel;
-        private String email;
-        private String latitude;
-        private String longitude;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        public String getUsername() {
-            return username;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getLastname() {
+        return lastname;
+    }
 
-        public String getStatus() {
-            return status;
-        }
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
-        public void setStatus(String status) {
-            this.status = status;
-        }
+    public String getTelephone() {
+        return telephone;
+    }
 
-        public String getCode() {
-            return code;
-        }
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-        public void setCode(String code) {
-            this.code = code;
-        }
+    public String getAddress() {
+        return address;
+    }
 
-        public String getDescription() {
-            return description;
-        }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public String getFirstname() {
+        return firstname;
+    }
 
-        public String getId_member() {
-            return id_member;
-        }
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 
-        public void setId_member(String id_member) {
-            this.id_member = id_member;
-        }
+    public String getTel() {
+        return tel;
+    }
 
-        public String getFirstname() {
-            return firstname;
-        }
-
-        public void setFirstname(String firstname) {
-            this.firstname = firstname;
-        }
-
-        public String getLastname() {
-            return lastname;
-        }
-
-        public void setLastname(String lastname) {
-            this.lastname = lastname;
-        }
-
-        public String getCash() {
-            return cash;
-        }
-
-        public void setCash(String cash) {
-            this.cash = cash;
-        }
-
-        public String getTel() {
-            return tel;
-        }
-
-        public void setTel(String tel) {
-            this.tel = tel;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getLatitude() {
-            return latitude;
-        }
-
-        public void setLatitude(String latitude) {
-            this.latitude = latitude;
-        }
-
-        public String getLongitude() {
-            return longitude;
-        }
-
-        public void setLongitude(String longitude) {
-            this.longitude = longitude;
-        }
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }
