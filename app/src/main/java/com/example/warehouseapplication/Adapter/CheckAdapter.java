@@ -42,7 +42,6 @@ public class CheckAdapter extends ArrayAdapter<Check> {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.follow_detail, null, true);
 
-
         TextView docno = (TextView) view.findViewById(R.id.textOrder);
         final Check product = productList.get(position);
         docno.setText(product.getDocNo());
@@ -62,7 +61,7 @@ public class CheckAdapter extends ArrayAdapter<Check> {
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Utils.user.getUsername() == "admin"){
+                if(Utils.user.getUsername().equals("admin")){
                     if (product.getStatus().equals("WC")) {
 
                         Toast.makeText(mCtx, product.getDocNo(), Toast.LENGTH_SHORT).show();
@@ -75,7 +74,7 @@ public class CheckAdapter extends ArrayAdapter<Check> {
                                 .setCallback(new FutureCallback<String>() {
                                     @Override
                                     public void onCompleted(Exception e, String result) {
-//                                    notifyDataSetChanged();
+
                                     }
                                 });
 
@@ -123,7 +122,7 @@ public class CheckAdapter extends ArrayAdapter<Check> {
                     }
                 }
                 else{
-                    Utils.order_id = product.getDocNo();
+                    Utils.order_item = product;
                     Intent intent = new Intent(mCtx, SlipActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mCtx.startActivity(intent);

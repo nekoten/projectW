@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehouseapplication.Tool.Utils;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -47,7 +48,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final String SERVER_ADDRESS = "http://beebikebnp.com/";
-
+    private static final String imagePath = "http://beebikebnp.com/android/";
     ImageView imageToUpload, downloadedImage;
     Button bUploadImage, bDownloadImage;
     EditText uploadImageName, downloadImageName;
@@ -63,11 +64,20 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
         id = findViewById(R.id.orderID);
         bUploadImage = findViewById(R.id.bUploadImage);
         uploadImageName = findViewById(R.id.etUploadName);
-        imageToUpload.setOnClickListener(this);
+
         bUploadImage.setOnClickListener(this);
 
-        id.setText(Utils.order_id);
+        id.setText(Utils.order_item.getDocNo());
+        Log.d(TAG, "onCreate: "+Utils.order_item.getSlip());
+        if (!Utils.order_item.getSlip().isEmpty()){
+            Log.d(TAG, "Picasso!");
+            Picasso.with(getApplicationContext()).load(imagePath+Utils.order_item.getSlip()).into(imageToUpload);
+            bUploadImage.setVisibility(View.GONE);
+        }else {
+            imageToUpload.setOnClickListener(this);
 
+
+        }
     }
 
 
@@ -120,7 +130,8 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
 
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("image", encodedImage));
-            dataToSend.add(new BasicNameValuePair("name", Utils.order_id));
+            dataToSend.add(new BasicNameValuePair("name", Utils.order_item.getDocNo()));
+
 //            dataToSend.add(new BasicNameValuePair("dis",dis));
 
 
@@ -143,6 +154,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Toast.makeText(getApplicationContext(), "Image Uploaded",Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

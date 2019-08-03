@@ -8,6 +8,7 @@ import android.location.Location;
 import android.media.ExifInterface;
 import android.widget.Toast;
 
+import com.example.warehouseapplication.Model.Check;
 import com.example.warehouseapplication.Model.DeliveryOrderModel;
 import com.example.warehouseapplication.Model.DriverModel;
 import com.example.warehouseapplication.Model.MyDeliverDriver;
@@ -63,7 +64,7 @@ public class Utils {
     public static QrScan itemScan;
 
     public static User user;
-    public static String order_id;
+    public static Check order_item;
 
     public static String mylattitude,mylongitude;
 

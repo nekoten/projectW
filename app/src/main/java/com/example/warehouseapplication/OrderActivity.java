@@ -17,6 +17,7 @@ import com.example.warehouseapplication.Fragment.CheckFragment;
 import com.example.warehouseapplication.Fragment.OrderListFragment;
 import com.example.warehouseapplication.Model.OrderDetail;
 import com.example.warehouseapplication.Model.Product;
+import com.example.warehouseapplication.Tool.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,11 +73,14 @@ public class OrderActivity  extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         orderListFragment = OrderListFragment.newInstance();
-
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mainFrag, orderListFragment);
+        if(Utils.user.getUsername().equals("user")) {
+            fragmentTransaction.replace(R.id.mainFrag, orderListFragment);
+        }else{
+            CheckFragment checkFragment = CheckFragment.newInstance();
+            fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+        }
         fragmentTransaction.commit();
-
         setSupportActionBar(toolbar);
         welcomeuser = findViewById(R.id.welcomeUser);
         welcomeuser.setText("สวัสดี " + firstname);
@@ -114,8 +118,11 @@ public class OrderActivity  extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_toolbar_items, menu);
-        return true;    }
+        if(Utils.user.getUsername().equals("user")) {
+            getMenuInflater().inflate(R.menu.main_toolbar_items, menu);
+        }
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -161,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 params.put("loginuser", "true");
 //                params.put("username", username.getText().toString().trim());
 //                params.put("userpassword", userpassword.getText().toString().trim());
-                params.put("username", "poon");
-                params.put("userpassword", "094082");
+                params.put("username", "admin");
+                params.put("userpassword", "admin");
                 return params;
             }
         };

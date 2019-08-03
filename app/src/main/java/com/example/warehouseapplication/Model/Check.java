@@ -2,7 +2,7 @@ package com.example.warehouseapplication.Model;
 
 public class Check {
 
-    String DocNo, Status;
+    String DocNo, Status,Slip;
 
     public String rOWAUTO;
   ;
@@ -60,22 +60,18 @@ public class Check {
     public String amount;
     public String dis;
     public String amountAll;
-    public String slip;
 
-    public String getSlip() {
-        return slip;
-    }
 
-    public void setSlip(String slip) {
-        this.slip = slip;
-    }
 
-    public Check(String docNo, String status) {
+    public Check(String docNo, String status,String slip) {
         DocNo = docNo;
         Status = status;
+        Slip = slip;
 
     }
-
+    public String getSlip(){
+        return Slip;
+    }
     public String getDocNo() {
         return DocNo;
     }

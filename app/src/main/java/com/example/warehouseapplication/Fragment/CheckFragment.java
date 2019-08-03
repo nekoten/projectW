@@ -119,7 +119,7 @@ public class CheckFragment extends Fragment{
                             JSONArray array = obj.getJSONArray("Invoice");
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject prodObj = array.getJSONObject(i);
-                                Check p = new Check(prodObj.getString("docno"), prodObj.getString("status"));
+                                Check p = new Check(prodObj.getString("docno"), prodObj.getString("status"),prodObj.getString("slip"));
                                 productList.add(p);
                             }
                             CheckAdapter adapter = new CheckAdapter(productList, mActivity.getApplicationContext());

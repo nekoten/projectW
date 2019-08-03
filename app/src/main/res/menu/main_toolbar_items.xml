@@ -17,10 +17,10 @@
         android:id="@+id/item_favorite"
         android:enabled="true"
         android:title="สินค้าที่สั่งซื้อ"/>
-    <item
-        android:id="@+id/Slip"
-        android:enabled="true"
-        android:title="ชำระเงินมัดจำ"/>
+    <!--<item-->
+        <!--android:id="@+id/Slip"-->
+        <!--android:enabled="true"-->
+        <!--android:title="ชำระเงินมัดจำ"/>-->
 
 
 
