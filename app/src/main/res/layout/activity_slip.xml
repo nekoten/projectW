@@ -41,11 +41,37 @@
         <Button
             android:background="@color/colorPrimary"
             android:textColor="@color/colorWhite"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:id="@+id/bUploadImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Upload Image" />
+
+        <Button
+            android:background="@color/colorS3"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/updateStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="text" />
+        <Button
+            android:visibility="gone"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/finStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="text" />
+
+
 
 
     </LinearLayout>

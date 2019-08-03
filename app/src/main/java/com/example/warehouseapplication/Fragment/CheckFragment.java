@@ -45,13 +45,13 @@ public class CheckFragment extends Fragment{
     static int mPosition;
     String TAG = "CheckFrag";
     TextView tv_name,tv_price;
-
     public List<Check> getProductList() {
         return productList;
     }
     public List<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
+
 
     public static CheckFragment newInstance() {
         CheckFragment checkFragment = new CheckFragment();
@@ -78,7 +78,7 @@ public class CheckFragment extends Fragment{
         listView = view.findViewById(R.id.mainCheck);
         Intent intent = getActivity().getIntent();
         idUser = intent.getStringExtra("idUser");
-        ShowList();
+//        ShowList();
 
 
 
@@ -105,6 +105,11 @@ public class CheckFragment extends Fragment{
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ShowList();
+    }
 
     private void ShowList() {
         if(productList.size() > 0){
@@ -124,6 +129,7 @@ public class CheckFragment extends Fragment{
                             }
                             CheckAdapter adapter = new CheckAdapter(productList, mActivity.getApplicationContext());
                             listView.setAdapter(adapter);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

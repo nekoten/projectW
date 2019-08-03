@@ -142,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("firstname", user.getFirstname());
                     intent.putExtra("idUser", user.getId_member());
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "เข้าสู่ระบบเสำเร็จ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "เข้าสู่ระบบเสำเร็จ", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(getApplicationContext(), "ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง!!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -163,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
 //                params.put("userpassword", userpassword.getText().toString().trim());
                 params.put("username", "admin");
                 params.put("userpassword", "admin");
+//                params.put("username", "poon");
+//                params.put("userpassword", "094082");
                 return params;
             }
         };

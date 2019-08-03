@@ -62,8 +62,7 @@ public class Check {
     public String amountAll;
 
 
-
-    public Check(String docNo, String status,String slip) {
+    public Check(String docNo, String status, String slip) {
         DocNo = docNo;
         Status = status;
         Slip = slip;
