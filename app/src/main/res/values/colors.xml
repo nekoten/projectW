@@ -8,10 +8,12 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colortextHint">#B1B1B1</color>
 
+
+
     <!--Status-->
 
     <color name="colorS1">#f00509</color>
     <color name="colorS2">#FAD102</color>
     <color name="colorS3">#04af24</color>
-    <color name="colorS4">#1E4726</color>
+    <color name="colorS4">#3F6EB5</color>
 </resources>

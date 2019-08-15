@@ -17,11 +17,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.warehouseapplication.Adapter.CheckAdapter;
+import com.example.warehouseapplication.Adapter.DetailAdapter;
+import com.example.warehouseapplication.Model.Check;
+import com.example.warehouseapplication.Model.DetailModel;
 import com.example.warehouseapplication.Tool.Utils;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -49,6 +58,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 //"http://beebikebnp.com/android/"
 
 public class SlipActivity extends AppCompatActivity implements View.OnClickListener {
@@ -59,8 +69,10 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageToUpload, downloadedImage;
     Button bUploadImage, bUpdate ,bFin;
     EditText uploadImageName, downloadImageName;
-    TextView id;
+    TextView id,dis;
     String TAG = "Ammy";
+    ListView listView;
+    static List<DetailModel> detailList = new ArrayList<>();
     private Animation mShakeAnimation;
 
     @Override
@@ -70,16 +82,19 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
 
         imageToUpload = findViewById(R.id.imageToUpload);
         id = findViewById(R.id.orderID);
+        dis = findViewById(R.id.txtdis);
         bUploadImage = findViewById(R.id.bUploadImage);
         bUpdate = findViewById(R.id.updateStatus);
         bFin = findViewById(R.id.finStatus);
+        listView = findViewById(R.id.detail_list);
+        Log.d(TAG, "onCreate: "+Utils.order_item.getAmountAll());
 
-        uploadImageName = findViewById(R.id.etUploadName);
 
+        dis.setText(Utils.order_item.getDis()+" ฿");
         mShakeAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake);
 
         id.setText(Utils.order_item.getDocNo());
-
+        ShowList();
         bUpdate.setText("ยืนยันการชำระ");
         bFin.setText("ปิดจ๊อบ");
 
@@ -270,6 +285,46 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
         HttpConnectionParams.setConnectionTimeout(httpRequestParams, 1000 * 30);
         HttpConnectionParams.setSoTimeout(httpRequestParams, 1000 * 30);
         return httpRequestParams;
+    }
+
+    private void ShowList() {
+        if(detailList.size() > 0){
+            detailList.clear();
+        }
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.getMainUrl() + "android/getDetail.php?docNo=" + Utils.order_item.getDocNo(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray array = obj.getJSONArray("InvoiceSub");
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject prodObj = array.getJSONObject(i);
+                                Log.d(TAG, "onResponse: "+prodObj.toString());
+//                                Check p = new Check(prodObj.getString("docno")
+//                                        , prodObj.getString("status")
+//                                        ,prodObj.getString("slip")
+//                                        ,prodObj.getString("dis")
+//                                        ,prodObj.getString("amountall"));
+                                DetailModel d = new DetailModel(prodObj.getString("ROWAUTO"),prodObj.getString("docno"),prodObj.getString("prod_name"),prodObj.getString("unit_name"),prodObj.getString("qty"),prodObj.getString("agv"),prodObj.getString("amount"));
+                                detailList.add(d);
+                            }
+
+                            DetailAdapter adapter = new DetailAdapter(detailList,getApplicationContext());
+                            listView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+
+        };
+        Handler.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
 }
