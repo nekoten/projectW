@@ -77,6 +77,7 @@ public class OrderActivity  extends AppCompatActivity{
         if(Utils.user.getUsername().equals("user")) {
             fragmentTransaction.replace(R.id.mainFrag, orderListFragment);
         }else{
+            Utils.filter = "1";
             CheckFragment checkFragment = CheckFragment.newInstance();
             fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
         }
@@ -120,6 +121,8 @@ public class OrderActivity  extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         if(Utils.user.getUsername().equals("user")) {
             getMenuInflater().inflate(R.menu.main_toolbar_items, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.admin_toolbar_items,menu);
         }
         return true;
     }
@@ -144,6 +147,53 @@ public class OrderActivity  extends AppCompatActivity{
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 break;
+
+            case R.id.st_1:
+                Utils.filter = "1";
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                checkFragment = CheckFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+                checkFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
+            case R.id.st_2:
+                Utils.filter = "2";
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                checkFragment = CheckFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+                checkFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
+            case R.id.st_3:
+                Utils.filter = "3";
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                checkFragment = CheckFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+                checkFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
+            case R.id.st_4:
+                Utils.filter = "4";
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                checkFragment = CheckFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+                checkFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
+            case R.id.st_5:
+                Utils.filter = "5";
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                checkFragment = CheckFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
+                checkFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+                break;
+
 
 //           case R.id.slip:
 //               fragmentTransaction = getSupportFragmentManager().beginTransaction();

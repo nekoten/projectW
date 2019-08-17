@@ -76,6 +76,8 @@ public class Utils {
 
     public static StoreModel storeModel ;
     public static Product product;
+    public static String filter;
+
     public static DriverModel driver;
     public static DeliveryOrderModel driver_allOrder;
     public static MyDeliverDriver driver_myOrder;

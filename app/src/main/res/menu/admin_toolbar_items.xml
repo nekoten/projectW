@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<item-->
+        <!--android:id="@+id/action_cart"-->
+        <!--android:orderInCategory="300"-->
+        <!--android:title="User"-->
+        <!--android:icon="@drawable/ic_cartcar"-->
+        <!--app:showAsAction="always"></item>-->
+
+    <item
+        android:id="@+id/st_1"
+        android:enabled="true"
+        android:title="รอยืนยันการชำระ"/>
+    <item
+        android:id="@+id/st_2"
+        android:enabled="true"
+        android:title="ยังไม่ได้ชำระ"
+        />
+    <item
+        android:id="@+id/st_3"
+        android:enabled="true"
+        android:title="ชำระเงินเแล้ว"
+        />
+    <item
+        android:id="@+id/st_4"
+        android:enabled="true"
+        android:title="ปิดจ๊อบ"/>
+    <item
+        android:id="@+id/st_5"
+        android:enabled="true"
+        android:title="ทั้งหมด"/>
+    <!--<item-->
+        <!--android:id="@+id/Slip"-->
+        <!--android:enabled="true"-->
+        <!--android:title="ชำระเงินมัดจำ"/>-->
+
+
+
+</menu>

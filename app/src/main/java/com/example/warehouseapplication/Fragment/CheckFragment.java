@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +30,7 @@ import com.example.warehouseapplication.MainActivity;
 import com.example.warehouseapplication.Model.Check;
 import com.example.warehouseapplication.Model.OrderDetail;
 import com.example.warehouseapplication.R;
+import com.example.warehouseapplication.Tool.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,10 +70,6 @@ public class CheckFragment extends Fragment{
         productList = new ArrayList<>();
         orderDetails = new ArrayList<>();
         Log.d(TAG, "onCreate: ");
-
-
-
-
     }
 
     @Nullable
@@ -115,6 +116,7 @@ public class CheckFragment extends Fragment{
         if(productList.size() > 0){
             productList.clear();
         }
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.getMainUrl() + "android/CheckOrder.php?idUser=" + idUser,
                 new Response.Listener<String>() {
                     @Override
@@ -133,7 +135,7 @@ public class CheckFragment extends Fragment{
                                 productList.add(p);
                             }
 
-                            CheckAdapter adapter = new CheckAdapter(productList, mActivity.getApplicationContext());
+                            CheckAdapter adapter = new CheckAdapter(productList, mActivity.getApplicationContext(), Utils.filter);
                             listView.setAdapter(adapter);
 
 
@@ -152,7 +154,7 @@ public class CheckFragment extends Fragment{
         Handler.getInstance(mActivity.getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
-//    @Override
+    //    @Override
 //    public void onFinishEditDialog(String amount) {
 //        orderDetail = new OrderDetail();
 //

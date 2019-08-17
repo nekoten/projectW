@@ -9,41 +9,66 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.warehouseapplication.Model.Check;
-import com.example.warehouseapplication.OrderActivity;
+
 import com.example.warehouseapplication.R;
 import com.example.warehouseapplication.SlipActivity;
 import com.example.warehouseapplication.Tool.Utils;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckAdapter extends ArrayAdapter<Check> {
 
-    private List<Check> productList;
+    private List<Check> productList = new ArrayList<>();
     private Context mCtx;
     String TAG = "Adapter";
-    public CheckAdapter(List<Check> P, Context c) {
-
+    public CheckAdapter(List<Check> P, Context c,String filter) {
         super(c, R.layout.follow_detail, P);
-        this.productList = P;
+        for (Check check : P) {
+            switch (filter){
+                case "1":
+                    if(check.getStatus().equals("WC")&&!check.getSlip().equals("")){
+                        this.productList.add(check);
+                    }
+                    break;
+                case "2":
+                    if(check.getStatus().equals("WC")&&check.getSlip().equals("")){
+                        this.productList.add(check);
+                    }
+                    break;
+                case "3":
+                    if(check.getStatus().equals("CO")){
+                        this.productList.add(check);
+                    }
+                    break;
+                case "4":
+                    if(check.getStatus().equals("FIN")){
+                        this.productList.add(check);
+                    }
+                    break;
+                 default:this.productList.add(check);
+                    break;
+            }
+        }
         this.mCtx = c;
 
+    }
+
+    @Override
+    public int getCount() {
+        return this.productList.size();
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.follow_detail, null, true);
-
         TextView docno = (TextView) view.findViewById(R.id.textOrder);
         final Check product = productList.get(position);
         docno.setText(product.getDocNo());
@@ -79,6 +104,7 @@ public class CheckAdapter extends ArrayAdapter<Check> {
 
         return view;
     }
+
 
 
 }

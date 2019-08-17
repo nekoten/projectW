@@ -5,99 +5,111 @@
     android:orientation="vertical">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        android:background="#494949"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#494949"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:orientation="horizontal"
+                android:padding="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtPro"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="ชื่อสินค้า :"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txtPro_p"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="value"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                     />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtPro"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="ชื่อสินค้า :"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtPro_p"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="value"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        />
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtQty"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="จำนวน :"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txtQty_p"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="value"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/txtAmout"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="ราคา :"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txtAmout_p"
-                    android:layout_weight=".5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
-                    android:text="value"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
-                    android:textColor="@color/colorPrimary"
-                    />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtQty"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="จำนวน :"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtQty_p"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="value"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtAmout"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="ราคา :"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:textSize="16dp"
+                        android:id="@+id/txtAmout_p"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:text="value"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                        android:textColor="@color/colorPrimary"
+                        />
+                </LinearLayout>
             </LinearLayout>
             <View
                 android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="1dp">
             </View>
-
-
         </LinearLayout>
 
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </RelativeLayout>
