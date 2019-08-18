@@ -75,6 +75,7 @@ public class OrderActivity  extends AppCompatActivity{
         orderListFragment = OrderListFragment.newInstance();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if(Utils.user.getUsername().equals("user")) {
+            Utils.filter = "5";
             fragmentTransaction.replace(R.id.mainFrag, orderListFragment);
         }else{
             Utils.filter = "1";
