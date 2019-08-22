@@ -7,11 +7,7 @@
     <color name="colortext">#A1000002</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colortextHint">#B1B1B1</color>
-
-
-
     <!--Status-->
-
     <color name="colorS1">#f00509</color>
     <color name="colorS2">#FAD102</color>
     <color name="colorS3">#04af24</color>

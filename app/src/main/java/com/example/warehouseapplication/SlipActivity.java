@@ -144,7 +144,8 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
                     imageToUpload.startAnimation(mShakeAnimation);
                 }else {
                     Bitmap image = ((BitmapDrawable) imageToUpload.getDrawable()).getBitmap();
-                    new UploadImage(image, uploadImageName.getText().toString()).execute();
+                    Log.d(TAG, "onClick: "+image.toString());
+                    new UploadImage(image).execute();
                 }
 
                 break;
@@ -236,36 +237,31 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
     private class UploadImage extends AsyncTask<Void, Void, Void> {
 
         Bitmap image;
-        String dis;
 
-        public UploadImage(Bitmap image, String dis) {
+        public UploadImage(Bitmap image) {
+
             this.image = image;
-            this.dis = dis;
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-
+            Log.d(TAG, "doInBackground: ");
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
             String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("image", encodedImage));
             dataToSend.add(new BasicNameValuePair("name", Utils.order_item.getDocNo()));
-
-//            dataToSend.add(new BasicNameValuePair("dis",dis));
-
-
             HttpParams httpRequestParams = getHttpReauestParams();
-
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "android/SavePicture.php");
 
             try {
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
+                Log.d(TAG, "doInBackground: ");
                 client.execute(post);
             } catch (Exception e) {
+                Log.d(TAG, "doInBackground: ");
                 e.printStackTrace();
             }
 
