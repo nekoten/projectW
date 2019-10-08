@@ -40,7 +40,7 @@ public class DetailAdapter extends ArrayAdapter<DetailModel> {
         final DetailModel item  = detailList.get(position);
         name.setText(item.getProd_name());
         qty.setText(item.getQty()+" กิโลกรัม");
-        amount.setText(item.getAmount()+" ฿");
+        amount.setText(item.getAmount()+" บาท");
 
         return view;
     }

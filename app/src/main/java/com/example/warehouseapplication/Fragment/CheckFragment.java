@@ -30,7 +30,11 @@ import com.example.warehouseapplication.MainActivity;
 import com.example.warehouseapplication.Model.Check;
 import com.example.warehouseapplication.Model.OrderDetail;
 import com.example.warehouseapplication.R;
+import com.example.warehouseapplication.RegisterActivity;
 import com.example.warehouseapplication.Tool.Utils;
+import com.google.gson.JsonArray;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,6 +74,7 @@ public class CheckFragment extends Fragment{
         productList = new ArrayList<>();
         orderDetails = new ArrayList<>();
         Log.d(TAG, "onCreate: ");
+
     }
 
     @Nullable
@@ -117,6 +122,57 @@ public class CheckFragment extends Fragment{
             productList.clear();
         }
 
+
+        Ion.with(CheckFragment.this)
+
+               .load("http://beebikebnp.com/android/CheckChange.php")
+                //.load("http://192.168.88.225/android/CheckChange.php")
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+
+                        try {
+
+                            JSONArray jsonArray = new JSONArray(result);
+                            for (int i =0; i<jsonArray.length(); i++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                String b = jsonObject.getString("docno");
+                                String a = jsonObject.getString("status");
+                                String c = jsonObject.getString("chk");
+                                System.out.println(a);
+
+                                if (c.equals("1")) {
+
+                                    if (a.equals("WC")) {
+                                        Ion.with(CheckFragment.this)
+
+                                                .load("http://beebikebnp.com/android/Change.php")
+                                                //.load("http://192.168.88.225/android/Change.php")
+                                                .setBodyParameter("change", b)
+                                                .asString()
+                                                .setCallback(new FutureCallback<String>() {
+                                                    @Override
+                                                    public void onCompleted(Exception e, String result) {
+                                                    }
+                                                });
+
+                                    }
+
+                                }
+
+                            }
+
+                        }catch (JSONException ex){
+                            ex.printStackTrace();
+                        }
+
+                    }
+                });
+
+
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.getMainUrl() + "android/CheckOrder.php?idUser=" + idUser,
                 new Response.Listener<String>() {
                     @Override
@@ -126,13 +182,16 @@ public class CheckFragment extends Fragment{
                             JSONArray array = obj.getJSONArray("Invoice");
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject prodObj = array.getJSONObject(i);
-                                Log.d(TAG, "onResponse: "+prodObj.toString());
+                                //Log.d(TAG, "onResponse: "+prodObj.toString());
                                 Check p = new Check(prodObj.getString("docno")
                                         , prodObj.getString("status")
                                         ,prodObj.getString("slip")
                                         ,prodObj.getString("dis")
-                                        ,prodObj.getString("amountall"));
+                                        ,prodObj.getString("amountall")
+                                        ,prodObj.getString("mark"));
                                 productList.add(p);
+
+
                             }
 
                             CheckAdapter adapter = new CheckAdapter(productList, mActivity.getApplicationContext(), Utils.filter);

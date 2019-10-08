@@ -37,6 +37,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class CartFragment extends Fragment implements DialogEditCartItemFragment.AmountDialogCartListener {
@@ -142,6 +145,43 @@ public class CartFragment extends Fragment implements DialogEditCartItemFragment
 
     public boolean sendOrder(List<OrderDetail> orderDetails) {
 
+        final String date01,date02;
+
+        DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy");
+        String date2 = df2.format(Calendar.getInstance().getTime());
+
+        DateFormat df3 = new SimpleDateFormat("HH:mm");
+        String date3 = df3.format(Calendar.getInstance().getTime());
+
+        String date22[] = date2.split("/");
+        String date33[] = date3.split(":");
+
+
+        if (Integer.parseInt(date33[0]) < 6){
+
+
+            date01 = date22[2]+"/"+date22[1]+"/"+date22[0]+" "+"06:00";
+            System.out.println(date01);
+
+            date02 = date22[2]+"/"+date22[1]+"/"+date22[0]+" "+"07:00";
+            System.out.println(date02);
+
+            System.out.println("1");
+
+        }else {
+
+            date01 = date22[2]+"/"+date22[1]+"/"+(Integer.parseInt(date22[0])+1)+" "+"06:00";
+            System.out.println(date01);
+
+            date02 = date22[2]+"/"+date22[1]+"/"+(Integer.parseInt(date22[0])+1)+" "+"07:00";
+            System.out.println(date02);
+
+            System.out.println("2");
+
+
+
+        }
+
         //statement
         new Thread(new Runnable() {
             @Override
@@ -158,6 +198,8 @@ public class CartFragment extends Fragment implements DialogEditCartItemFragment
                     JSONObject jsonclient = new JSONObject();
                     jsonclient.put("client",client);
                     jsonclient.put("idUser",idUser);
+                    jsonclient.put("time",date01);
+                    jsonclient.put("time2",date02);
                     for (int i = 0; i < mOrderDetails.size(); i++) {
                         JSONObject mJsonObject = new JSONObject();
                         mJsonObject.put("code", mOrderDetails.get(i).getCode());

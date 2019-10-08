@@ -31,7 +31,7 @@
         android:hint="ชื่อผู้ใช้"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textView3" />
@@ -45,7 +45,7 @@
         android:hint="รหัสผ่าน"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/regUser" />
@@ -59,7 +59,7 @@
         android:hint="ชื่อ"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/regPassword" />
@@ -72,7 +72,7 @@
         android:ems="10"
         android:hint="นามสกุล"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/regName" />
@@ -84,8 +84,9 @@
         android:layout_marginTop="148dp"
         android:ems="10"
         android:hint="โทรศัพท์"
+        android:inputType="number"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/regName" />
@@ -98,7 +99,7 @@
         android:ems="10"
         android:hint="ที่อยู่"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFF8D"
+        android:textColorHint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/regName" />
@@ -108,7 +109,10 @@
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="316dp"
+        android:background="@color/colorPrimary"
         android:text="สมัครสมาชิก"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regLastname" />

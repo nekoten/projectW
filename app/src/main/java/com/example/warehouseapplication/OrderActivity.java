@@ -6,12 +6,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.warehouseapplication.Fragment.ApproveFragment;
 import com.example.warehouseapplication.Fragment.CartFragment;
 import com.example.warehouseapplication.Fragment.CheckFragment;
 import com.example.warehouseapplication.Fragment.OrderListFragment;
@@ -47,6 +49,7 @@ public class OrderActivity  extends AppCompatActivity{
 
     static List<OrderDetail> orderDetails;
     TextView welcomeuser;
+    Button btn_approve;
     Toolbar toolbar;
     FragmentTransaction fragmentTransaction;
     OrderListFragment orderListFragment;
@@ -70,6 +73,7 @@ public class OrderActivity  extends AppCompatActivity{
 
 
         toolbar = findViewById(R.id.toolbar);
+        btn_approve = findViewById(R.id.btn_approve);
         super.onCreate(savedInstanceState);
 
         orderListFragment = OrderListFragment.newInstance();
@@ -79,6 +83,7 @@ public class OrderActivity  extends AppCompatActivity{
             fragmentTransaction.replace(R.id.mainFrag, orderListFragment);
         }else{
             Utils.filter = "1";
+            btn_approve.setVisibility(View.VISIBLE);
             CheckFragment checkFragment = CheckFragment.newInstance();
             fragmentTransaction.replace(R.id.mainFrag, checkFragment, "check_fragment");
         }
@@ -86,11 +91,19 @@ public class OrderActivity  extends AppCompatActivity{
         setSupportActionBar(toolbar);
         welcomeuser = findViewById(R.id.welcomeUser);
         welcomeuser.setText("สวัสดี " + firstname);
+        btn_approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                ApproveFragment approveFragment = ApproveFragment.newInstance();
+                fragmentTransaction.replace(R.id.mainFrag, approveFragment, "approve_fragment");
+                approveFragment.setRetainInstance(true);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
-        //Bind Widget
-        bindWidget();
-        //setup Text Show Officer
-        setUpTxtShowOfficer();
+
 
 //        test = findViewById(R.id.test);
 //
@@ -106,17 +119,6 @@ public class OrderActivity  extends AppCompatActivity{
 
 
     }   //onCreate
-
-    private void setUpTxtShowOfficer() {
-
-        strMyOfficer = getIntent().getExtras().getString("Name");
-        txtShowOfficer.setText(strMyOfficer);
-
-    }   //setup text show Officer
-
-    private void bindWidget() {
-        txtShowOfficer = (TextView) findViewById(R.id.txtShowOfficer);
-    }   //binddWidget
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

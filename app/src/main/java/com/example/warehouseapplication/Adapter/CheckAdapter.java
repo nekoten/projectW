@@ -78,18 +78,23 @@ public class CheckAdapter extends ArrayAdapter<Check> {
         if (product1.getStatus().equals("WC")) {
             if(product1.getSlip().equals("")){
                 status.setBackgroundResource(R.color.colorS1);
-                status.setText("ยังไม่ได้ชำระ");
+                status.setText("ยังไม่ได้ชำระเงิน");
             }else{
                 status.setBackgroundResource(R.color.colorS4);
-                status.setText("รอยืนยันการชำระ");
+                status.setText("รอยืนยันชำระเงิน");
             }
         }
         else if (product1.getStatus().equals("CO")){
             status.setBackgroundResource(R.color.colorS3);
             status.setText("ชำระเงินแล้ว");
-        } else{
+        }
+        else if (product1.getStatus().equals("DL")){
+            status.setBackgroundResource(R.color.colorS5);
+            status.setText("สินค้าพร้อมจัดส่ง");
+        }
+        else{
             status.setBackgroundResource(R.color.colorPrimary);
-            status.setText("ปิดจ๊อบ");
+            status.setText("เสร็จสิ้นการสั่งซื้อ");
         }
 
         status.setOnClickListener(new View.OnClickListener() {

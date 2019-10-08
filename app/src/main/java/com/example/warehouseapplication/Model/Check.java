@@ -8,14 +8,16 @@ public class Check {
     public String amount;
     public String dis;
     public String amountAll;
+    public String mark;
 
 
-    public Check(String docNo, String status, String slip, String dis, String amountAll) {
+    public Check(String docNo, String status, String slip, String dis, String amountAll,String mark) {
         this.DocNo = docNo;
         this.Status = status;
         this.Slip = slip;
         this.dis = dis;
         this.amountAll = amountAll;
+        this.mark = mark;
     }
 
     public String getDocNo() {
@@ -56,5 +58,13 @@ public class Check {
 
     public void setAmountAll(String amountAll) {
         this.amountAll = amountAll;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
     }
 }

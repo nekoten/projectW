@@ -12,11 +12,11 @@
     <item
         android:id="@+id/st_1"
         android:enabled="true"
-        android:title="รอยืนยันการชำระ"/>
+        android:title="รอยืนยันการชำระเงิน"/>
     <item
         android:id="@+id/st_2"
         android:enabled="true"
-        android:title="ยังไม่ได้ชำระ"
+        android:title="ยังไม่ได้ชำระเงิน"
         />
     <item
         android:id="@+id/st_3"
@@ -26,7 +26,7 @@
     <item
         android:id="@+id/st_4"
         android:enabled="true"
-        android:title="ปิดจ๊อบ"/>
+        android:title="เสร็จสิ้นการสั่งซื้อ"/>
     <item
         android:id="@+id/st_5"
         android:enabled="true"

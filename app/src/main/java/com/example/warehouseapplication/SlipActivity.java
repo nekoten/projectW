@@ -65,12 +65,15 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final String SERVER_ADDRESS = "http://beebikebnp.com/";
-    private static final String imagePath = "http://beebikebnp.com/android/";
+   private static final String imagePath = "http://beebikebnp.com/android/";
+    //private static final String SERVER_ADDRESS = "http://192.168.88.225/";
+    //private static final String imagePath = "http://192.168.88.225/android/";
     ImageView imageToUpload, downloadedImage;
     Button bUploadImage, bUpdate ,bFin;
     EditText uploadImageName, downloadImageName;
-    TextView id,dis;
-    String TAG = "Ammy";
+    TextView id,dis,amountAll;
+    String TAG = "pluem";
+    String user;
     ListView listView;
     static List<DetailModel> detailList = new ArrayList<>();
     private Animation mShakeAnimation;
@@ -83,6 +86,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
         imageToUpload = findViewById(R.id.imageToUpload);
         id = findViewById(R.id.orderID);
         dis = findViewById(R.id.txtdis);
+        amountAll = findViewById(R.id.txtamountAll);
         bUploadImage = findViewById(R.id.bUploadImage);
         bUpdate = findViewById(R.id.updateStatus);
         bFin = findViewById(R.id.finStatus);
@@ -90,13 +94,15 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "onCreate: "+Utils.order_item.getAmountAll());
 
 
-        dis.setText(Utils.order_item.getDis()+" ฿");
+        dis.setText(Utils.order_item.getDis()+"  บาท");
+        amountAll.setText(Utils.order_item.getAmountAll()+"  บาท");
         mShakeAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.shake);
 
-        id.setText(Utils.order_item.getDocNo());
+
         ShowList();
-        bUpdate.setText("ยืนยันการชำระ");
-        bFin.setText("ปิดจ๊อบ");
+        getUser();
+        bUpdate.setText("ยืนยันการชำระเงิน");
+        bFin.setText("เสร็จสิ้นการสั่งซื้อ");
 
         bUploadImage.setOnClickListener(this);
         bUpdate.setOnClickListener(this);
@@ -106,9 +112,12 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
             bUploadImage.setVisibility(View.GONE);
             if (!Utils.order_item.getSlip().isEmpty()) {
                 Picasso.with(getApplicationContext()).load(imagePath + Utils.order_item.getSlip()).into(imageToUpload);
-                if (Utils.order_item.getStatus().equals("CO")) {
+                if (Utils.order_item.getStatus().equals("DL")) {
                     bUpdate.setVisibility(View.GONE);
                     bFin.setVisibility(View.VISIBLE);
+                }
+                if (Utils.order_item.getStatus().equals("FIN")||Utils.order_item.getStatus().equals("CO")){
+                    bUpdate.setVisibility(View.GONE);
                 }
             }else {
                     bUpdate.setEnabled(false);
@@ -153,7 +162,8 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.updateStatus:
                 if (Utils.order_item.getStatus().equals("WC")) {
                     Ion.with(getApplicationContext())
-                            .load("http://beebikebnp.com/android/Update.php")
+                           .load("http://beebikebnp.com/android/Update.php")
+                            //.load("http://192.168.88.225/android/Update.php")
                             .setBodyParameter("id", Utils.order_item.getDocNo())
                             .asString()
                             .setCallback(new FutureCallback<String>() {
@@ -166,6 +176,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
                     Ion.with(getApplicationContext())
 
                             .load("http://beebikebnp.com/android/SelectBeer.php")
+                            //.load("http://192.168.88.225/android/SelectBeer.php")
                             .setBodyParameter("id", Utils.order_item.getDocNo())
                             .asString()
                             .setCallback(new FutureCallback<String>() {
@@ -183,6 +194,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
                                             Ion.with(getApplicationContext())
 
                                                     .load("http://beebikebnp.com/android/InsertBeer.php")
+                                                    //.load("http://192.168.88.225/android/InsertBeer.php")
                                                     .setBodyParameter("pro", a)
                                                     .setBodyParameter("qty", b)
                                                     .asString()
@@ -209,6 +221,7 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.finStatus:
                 Ion.with(getApplicationContext())
                         .load("http://beebikebnp.com/android/Finish.php")
+                        //.load("http://192.168.88.225/android/Finish.php")
                         .setBodyParameter("id", Utils.order_item.getDocNo())
                         .asString()
                         .setCallback(new FutureCallback<String>() {
@@ -308,6 +321,37 @@ public class SlipActivity extends AppCompatActivity implements View.OnClickListe
 
                             DetailAdapter adapter = new DetailAdapter(detailList,getApplicationContext());
                             listView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+
+        };
+        Handler.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    private void getUser() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.getMainUrl() + "android/getUser.php?mark=" + Utils.order_item.getMark(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray array = obj.getJSONArray("user");
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject prodObj = array.getJSONObject(i);
+                                Log.d(TAG, "result: "+prodObj.getString("name"));
+                                user =prodObj.getString("name");
+                            }
+                            id.setText(Utils.order_item.getDocNo()+" (คุณ "+ user +") ");
+//                            DetailAdapter adapter = new DetailAdapter(detailList,getApplicationContext());
+//                            listView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

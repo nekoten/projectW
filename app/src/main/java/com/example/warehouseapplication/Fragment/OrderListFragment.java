@@ -115,6 +115,7 @@ public class OrderListFragment extends Fragment  implements DialogOrderFragment.
             productList.clear();
         }
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://beebikebnp.com/android/product_view.php",
+        //StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.88.225/android/product_view.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

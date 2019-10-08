@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/textOrder"
+                    android:layout_weight=".5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:padding="10dp"
+                    android:text="Order..."
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/textstatus"
+                    android:layout_weight=".5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/space"
+                    >
+                    <Button
+                        android:id="@+id/btn_reject"
+                        android:layout_margin="8dp"
+                        android:drawableStart="@drawable/ic_reject"
+                        android:text="ไม่อนุมัติ"
+                        android:background="@color/colorS1"
+                        android:layout_weight=".5"
+                        android:textColor="@color/colorWhite"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_reject" />
+                    <Button
+                        android:id="@+id/btn_approve"
+                        android:layout_margin="8dp"
+                        android:background="@color/colorS3"
+                        android:drawableStart="@drawable/ic_check_black_24dp"
+                        android:layout_weight=".5"
+                        android:layout_width="0dp"
+                        android:text="อนุมัติ"
+                        android:textColor="@color/colorWhite"
+                        android:layout_height="match_parent"
+                        android:drawableLeft="@drawable/ic_cartcar" />
+                </LinearLayout>
+
+
+
+</LinearLayout>

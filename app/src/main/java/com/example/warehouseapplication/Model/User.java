@@ -25,6 +25,15 @@ public class User {
     private String address;
     private String firstname;
     private String tel;
+    private String active;
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
+    }
 
     public String getId_member() {
         return id_member;

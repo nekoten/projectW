@@ -35,6 +35,9 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //    private static final String LoginUrl = "http://beebikebnp.com/android/login.php";
+    //private static final String mainUrl = "http://192.168.88.225/";
     private static final String mainUrl = "http://beebikebnp.com/";
 
     @Override
@@ -68,9 +72,8 @@ public class MainActivity extends AppCompatActivity {
         userpassword = findViewById(R.id.txtPassword);
         signup = findViewById(R.id.usersignup);
         btnLogin = findViewById(R.id.btnLogin);
-        _spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.usertype, R.layout.support_simple_spinner_dropdown_item);
-        _spinner.setAdapter(adapter);
+
+
 
 //        btnLogin.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -129,20 +132,28 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(StringRequest.Method.POST, mainUrl + "android/login.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (!response.isEmpty()) {
+
+
+                if (!response.isEmpty()&& !response.equals("") && response != null) {
+
                     User user = MessageHandler.deSerializeMessage(response,User.class);
                     Utils.user = user;
-                    Log.d(TAG, "onResponse: "+ response);
+                    if(user.getActive().equals("Y")) {
+                        Log.d(TAG, "onResponse: " + response);
 
-                    Log.d(TAG, "onResponse_type: " + Utils.user.getUsername());
-                    Log.d(TAG, "onResponse_model: "+ user);
+                        Log.d(TAG, "onResponse_type: " + Utils.user.getUsername());
+                        Log.d(TAG, "onResponse_model: " + user);
 
-                    Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
-                    intent.putExtra("username", user.getUsername());
-                    intent.putExtra("firstname", user.getFirstname());
-                    intent.putExtra("idUser", user.getId_member());
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(), "เข้าสู่ระบบเสำเร็จ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+                        intent.putExtra("username", user.getUsername());
+                        intent.putExtra("firstname", user.getFirstname());
+                        intent.putExtra("idUser", user.getId_member());
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(), "เข้าสู่ระบบเสำเร็จ", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Log.d(TAG, "onResponse: "+user.getActive());
+                        Toast.makeText(getApplicationContext(), "ชื่อผู้ใช้ยังไม่ผ่านการอนุมัติ", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
                     Toast.makeText(getApplicationContext(), "ชื่อผู้ใช้ หรือ รหัสผ่าน ไม่ถูกต้อง!!", Toast.LENGTH_SHORT).show();
                 }
@@ -159,12 +170,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "getParams: ");
                 Map<String, String> params = new HashMap<>();
                 params.put("loginuser", "true");
-//                params.put("username", username.getText().toString().trim());
-//                params.put("userpassword", userpassword.getText().toString().trim());
+                params.put("username", username.getText().toString().trim());
+                params.put("userpassword", userpassword.getText().toString().trim());
 //                params.put("username", "admin");
 //                params.put("userpassword", "admin");
-                params.put("username", "test1");
-                params.put("userpassword", "test1");
+//                params.put("username", "test1");
+//                params.put("userpassword", "test1");
                 return params;
             }
         };
@@ -174,6 +185,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickLogin(View view){
+
+
+
+
 
         strUserChoose = edtUser.getText().toString().trim();
         strPasswordchoose = edtPassword.getText().toString().trim();
@@ -185,8 +200,7 @@ public class MainActivity extends AppCompatActivity {
             objMyAlert.errorDialog(MainActivity.this, "มีช่องว่าง", "กรุณากรอกให้เรียบร้อย");
 
         }else {
-
-            checkUser();
+            //checkUser();
 
         }
 

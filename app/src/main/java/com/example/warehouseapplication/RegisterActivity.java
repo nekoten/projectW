@@ -18,6 +18,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btnRegister;
 
     private static final String registerUrl = "http://beebikebnp.com/android/Regis.php";
+    //private static final String registerUrl = "http://192.168.88.225/android/Regis.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
